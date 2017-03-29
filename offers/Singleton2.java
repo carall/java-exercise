@@ -1,16 +1,20 @@
 package offers;
 
 /**
- * Created by song on 17-3-17.
+ * Created by song on 17-3-18.
  */
-public class Singleton {
-    private static Singleton singleton = null;
-
+public class Singleton2 {
+    private static Singleton2 singleton2 = new Singleton2();
+    /*
+    static {
+        singleton2 = new Singleton2();
+    }
+    */
     public static void main(String[] args) {
         int i = 0;
         // multi threads test
         Runnable r = () -> {
-            Singleton s = Singleton.getInstance();
+            Singleton2 s = Singleton2.getInstance();
             String temp = "null";
             if (s != null) {
                 temp = s.toString();
@@ -22,14 +26,9 @@ public class Singleton {
         }
     }
 
-    //getInstance() return the only one instance.
-    private static synchronized Singleton getInstance() {
-        if (singleton == null) {
-            singleton = new Singleton();
-        }
-        return singleton;
-    }
+    private Singleton2() {}
 
-    private Singleton() {
+    private static Singleton2 getInstance() {
+        return singleton2;
     }
 }
